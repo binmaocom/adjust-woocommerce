@@ -503,12 +503,15 @@ jQuery( function( $ ) {
 						return raw_response;
 					}
 				} );
-
+				// console.log(new FormData(this));
+				// console.log($form.serialize());
 				$.ajax({
 					type:		'POST',
 					url:		wc_checkout_params.checkout_url,
-					data:		$form.serialize(),
-					dataType:   'json',
+					data:		new FormData(this),//$form.serialize(),
+					processData: false,
+        			contentType: false,
+					// dataType:   'json',
 					success:	function( result ) {
 						// Detach the unload handler that prevents a reload / redirect
 						wc_checkout_form.detachUnloadEventsOnSubmit();
